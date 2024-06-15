@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	postRepository repository.PostRepository = repository.NewSQLite3Repository()
+	postRepository repository.PostRepository = repository.NewSQLiteRepository("./db/posts.db")
 	postService    service.PostService       = service.NewPostService(postRepository)
 	postController controller.PostController = controller.NewPostController(postService)
 	httpRouter     router.Router             = router.NewMuxRouter()

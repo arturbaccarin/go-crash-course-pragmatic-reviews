@@ -23,6 +23,10 @@ func (mock *MockRepository) FindAll() ([]*entity.Post, error) {
 	return result.([]*entity.Post), args.Error(1)
 }
 
+func (mock *MockRepository) Delete(id int) error {
+	return nil
+}
+
 func TestValidateEmptyPost(t *testing.T) {
 	testService := NewPostService(nil)
 

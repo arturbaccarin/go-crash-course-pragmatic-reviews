@@ -71,3 +71,18 @@ func (r *repo) FindAll() ([]*entity.Post, error) {
 
 	return posts, nil
 }
+
+func (r *repo) Delete(id int) error {
+	stmt, err := r.db.Prepare("DELETE FROM post WHERE id = $1;")
+	if err != nil {
+		return err
+	}
+	defer stmt.Close()
+
+	_, err = stmt.Exec(id)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
